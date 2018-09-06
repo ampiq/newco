@@ -2,6 +2,7 @@ package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.ApiConstant;
 import com.andreitop.newco.dto.TripDto;
+import com.andreitop.newco.service.GenericService;
 import com.andreitop.newco.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(ApiConstant.API_V_1 + "/trips")
-public class TripsController {
+public class TripsController implements GenericController<TripDto> {
 
     private final TripService tripService;
 
@@ -29,30 +30,35 @@ public class TripsController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public List<TripDto> findAll() {
         return tripService.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public TripDto findById(@PathVariable("id") final Long id) {
         return tripService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Override
     public void create(@RequestBody final TripDto trip) {
         tripService.save(trip);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Override
     public void delete(@PathVariable("id") final Long id) {
         tripService.delete(id);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public void update(@RequestBody final TripDto newTrip) {
         tripService.update(newTrip);
     }
