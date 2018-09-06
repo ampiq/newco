@@ -15,8 +15,12 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,6 +32,8 @@ public class TripsControllerTest {
     private static final String TRIP_JSON = "{\"origin\": \"LED\" , \"destination\":\"MOW\", \"price\" : 12256}";
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     private static final String API_URL = ApiConstant.API_V_1 + "/trips";
+    private static final String UPDATE_JSON = "{ \"id:\": 1, \"origin\": \"LED\" , \"destination\":\"MOW\", \"price\" : 25}";
+    private static final int DEFAULT_ID = 1;
 
     @Autowired
     private MockMvc mockMvc;
@@ -63,5 +69,19 @@ public class TripsControllerTest {
                 .andExpect(jsonPath("$[0].origin", is("MOW")))
                 .andExpect(jsonPath("$[0].destination", is("LED")))
                 .andExpect(jsonPath("$[0].price", is(4232)));
+    }
+
+    @Test
+    public void UpdateTrip() throws Exception {
+        mockMvc.perform(put(API_URL)
+                .contentType(CONTENT_TYPE)
+                .content(UPDATE_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void DeleteTrip() throws Exception {
+        mockMvc.perform(delete(API_URL + "/{id}", DEFAULT_ID))
+                .andExpect(status().isNoContent());
     }
 }
