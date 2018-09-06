@@ -11,6 +11,16 @@ public class TripDto implements Serializable {
     private String destination;
     private Integer price;
 
+    public TripDto(Long id, String origin, String destination, Integer price) {
+        this.id = id;
+        this.origin = origin;
+        this.destination = destination;
+        this.price = price;
+    }
+
+    public TripDto() {
+    }
+
     public Long getId() {
         return id;
     }
