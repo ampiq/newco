@@ -1,4 +1,4 @@
-package com.andreitop.newco.Exception;
+package com.andreitop.newco.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
