@@ -29,4 +29,46 @@ public class LoggingAspect {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Method " + className + "." + methodName + " is about to be called After");
     }
+
+    @Before("com.andreitop.newco.aspect.PointcutContainer.repositorySave()")
+    public void beforeRepoSave(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called Before");
+    }
+
+    @After("com.andreitop.newco.aspect.PointcutContainer.repositorySave()")
+    public void afterRepoSave(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called After");
+    }
+
+    @Before("com.andreitop.newco.aspect.PointcutContainer.repositoryUpdate()")
+    public void beforeRepoUpdate(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called Before");
+    }
+
+    @After("com.andreitop.newco.aspect.PointcutContainer.repositoryUpdate()")
+    public void afterRepoUpdate(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called After");
+    }
+
+    @Before("com.andreitop.newco.aspect.PointcutContainer.repositoryDelete()")
+    public void beforeRepoDelete(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called Before");
+    }
+
+    @After("com.andreitop.newco.aspect.PointcutContainer.repositoryDelete()")
+    public void afterRepoDelete(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called After");
+    }
 }
